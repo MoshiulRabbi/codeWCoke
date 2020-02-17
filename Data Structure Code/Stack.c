@@ -5,7 +5,7 @@ struct stack
 {
     int data;
     struct stack *next;
-
+ 
 }*top;
 int size=0;
 void push(int element);
@@ -18,7 +18,7 @@ int main()
     int choice, data;
     while(1)
    {
-
+ 
     printf("--------------------------------------------\n");
     printf("choose what do you want:\n");
     printf("1. Push\n");
@@ -40,7 +40,7 @@ int main()
         data=pop();
         if(data!=INT_MIN)
             printf("Popped data is : %d",data);
-
+ 
         break;
     case 3:
         display();
@@ -54,7 +54,7 @@ int main()
     case 6:
         find();
         break;
-
+ 
     }
     printf("\n\n");
    }
@@ -79,14 +79,14 @@ int pop()
         printf("Stack is Empty");
         return INT_MIN;
     }
-
+ 
     temp=top;
     data=top->data;
     top=top->next;
     free(temp);
     size--;
     return data;
-
+ 
 }
 void display()
 {
@@ -106,7 +106,7 @@ void maxmin()
     int max,min;
     max=temp->data;
     min=temp->data;
-
+ 
     while(temp!=NULL)
     {
         if(temp->data>max)
@@ -137,7 +137,7 @@ void find()
             i++;
             Item=temp->data;
            }
-
+ 
         temp=temp->next;
     }
    printf("Item Found %d times: %d\n",i,Item);

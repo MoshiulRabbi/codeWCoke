@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<stdlib.h>
+ 
 struct node
 {
     int data;
@@ -15,11 +15,6 @@ int main()
     createList(n);
  
     printf("\nList is\n ");
- 
-    displaylist();
- 
-    printf("\nReversed List is: \n");
-    reverseList();
  
     displaylist();
  
@@ -69,21 +64,3 @@ void displaylist()
         temp=temp->next;
     }
 }
- void reverseList()
- {
-     struct node *current,*prev,*next;
-     current=head;
-     prev=NULL;
- 
-     while(current != NULL)
-     {
-         next=current->next;
-         current->next=prev;
- 
-         prev=current;
-         current=next;
- 
- 
-     }
-     head=prev;
- }

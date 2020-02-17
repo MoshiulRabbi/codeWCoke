@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+ 
 struct node
 {
     int data;
@@ -15,12 +16,10 @@ int main()
     createList(n);
  
     printf("\nList is\n ");
- 
     displaylist();
  
-    printf("\nReversed List is: \n");
-    reverseList();
- 
+    sortlist(head);
+    printf("\nSorted List is:\n");
     displaylist();
  
     return 0;
@@ -41,11 +40,11 @@ void createList(int n)
     p=temp;
     head=temp;
  
-    for(i=2;i<=n;i++)
+    for(i=2; i<=n; i++)
     {
         temp=(struct node *)malloc(sizeof(struct node));
  
-        printf("Enter the data of the node %d: ",i);
+        printf("Enter the data of the %d: ",i);
         scanf("%d",&data);
  
         temp->data=data;
@@ -69,21 +68,21 @@ void displaylist()
         temp=temp->next;
     }
 }
- void reverseList()
- {
-     struct node *current,*prev,*next;
-     current=head;
-     prev=NULL;
+void sortlist(struct node *head)
+{
  
-     while(current != NULL)
-     {
-         next=current->next;
-         current->next=prev;
- 
-         prev=current;
-         current=next;
- 
- 
-     }
-     head=prev;
- }
+    struct node *i,*j;
+    int temp;
+    for (i=head; i->next!=NULL; i=i->next)
+    {
+        for(j=i->next; j!=NULL; j=j->next)
+        {
+            if(i->data>j->data)
+            {
+                temp=i->data;
+                i->data=j->data;
+                j->data=temp;
+            }
+        }
+    }
+}

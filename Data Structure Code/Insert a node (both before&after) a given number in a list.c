@@ -1,14 +1,17 @@
 #include<stdio.h>
+#include<malloc.h>
 #include<stdlib.h>
+ 
 struct node
 {
     int data;
     struct node *next;
 }*head;
  
+ 
 int main()
 {
-    int n;
+    int n,m,data;
     printf("Enter total number of node: ");
     scanf("%d",&n);
  
@@ -18,8 +21,15 @@ int main()
  
     displaylist();
  
-    printf("\nReversed List is: \n");
-    reverseList();
+    printf ("\n\nEnter data to insert at beginning of the list: ");
+    scanf ("%d",&data);
+    AddAtBeg(data);
+ 
+    displaylist();
+ 
+    printf ("\n\nEnter data to insert at end of the list: ");
+    scanf ("%d",&m);
+    AddAtEnd(m);
  
     displaylist();
  
@@ -32,7 +42,7 @@ void createList(int n)
  
     temp=(struct node *)malloc(sizeof(struct node));
  
-    printf("Enter the data of the node 1: ");
+    printf("\nEnter the data of the node 1: ");
     scanf("%d",&data);
  
     temp->data=data;
@@ -41,7 +51,7 @@ void createList(int n)
     p=temp;
     head=temp;
  
-    for(i=2;i<=n;i++)
+    for(i=2; i<=n; i++)
     {
         temp=(struct node *)malloc(sizeof(struct node));
  
@@ -69,21 +79,28 @@ void displaylist()
         temp=temp->next;
     }
 }
- void reverseList()
- {
-     struct node *current,*prev,*next;
-     current=head;
-     prev=NULL;
+void AddAtEnd(int data)
+{
+    struct node *newNode, *temp;
  
-     while(current != NULL)
-     {
-         next=current->next;
-         current->next=prev;
+    newNode = (struct node*)malloc(sizeof(struct node));
  
-         prev=current;
-         current=next;
+    newNode->data = data;
+    newNode->next = NULL;
  
+    temp = head;
  
-     }
-     head=prev;
- }
+    while(temp->next != NULL)
+        temp = temp->next;
+ 
+    temp->next = newNode;
+ 
+}
+void AddAtBeg(int data)
+{
+    struct node *tmp;
+    tmp=(struct node*)malloc(sizeof(struct node));
+    tmp->data=data;
+    tmp->next=head;
+    head=tmp;
+}

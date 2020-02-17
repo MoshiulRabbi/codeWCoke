@@ -8,8 +8,8 @@ struct node
  
 int main()
 {
-    int n;
-    printf("Enter total number of node: ");
+    int n,m;
+    printf("Enter Total Number Of Node: ");
     scanf("%d",&n);
  
     createList(n);
@@ -18,8 +18,9 @@ int main()
  
     displaylist();
  
-    printf("\nReversed List is: \n");
-    reverseList();
+    printf("\nEnter the position you want to delete: ");
+    scanf("%d",&m);
+    deletelist(m);
  
     displaylist();
  
@@ -41,7 +42,7 @@ void createList(int n)
     p=temp;
     head=temp;
  
-    for(i=2;i<=n;i++)
+    for(i=2; i<=n; i++)
     {
         temp=(struct node *)malloc(sizeof(struct node));
  
@@ -69,21 +70,26 @@ void displaylist()
         temp=temp->next;
     }
 }
- void reverseList()
- {
-     struct node *current,*prev,*next;
-     current=head;
-     prev=NULL;
+void deletelist(int n)
+{
+    struct node *temp1=head;
  
-     while(current != NULL)
-     {
-         next=current->next;
-         current->next=prev;
+    if(n==1)
+    {
+        head=temp1->next;
+        free(temp1);
+        return;
+    }
+    int i;
  
-         prev=current;
-         current=next;
+    for(i=0; i<n-2; i++)
+ 
+        temp1=temp1->next;
+ 
+    struct node *temp2=temp1->next;
+ 
+    temp1->next=temp2->next;
+    free(temp2);
  
  
-     }
-     head=prev;
- }
+}

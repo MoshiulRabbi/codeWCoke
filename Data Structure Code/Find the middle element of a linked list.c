@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<stdlib.h>
+ 
 struct node
 {
     int data;
@@ -8,7 +8,7 @@ struct node
  
 int main()
 {
-    int n;
+    int n,mid;
     printf("Enter total number of node: ");
     scanf("%d",&n);
  
@@ -18,10 +18,9 @@ int main()
  
     displaylist();
  
-    printf("\nReversed List is: \n");
-    reverseList();
+    mid=findmid();
  
-    displaylist();
+    printf("\nMiddle of the element is %d: ",mid);
  
     return 0;
 }
@@ -41,7 +40,7 @@ void createList(int n)
     p=temp;
     head=temp;
  
-    for(i=2;i<=n;i++)
+    for(i=2; i<=n; i++)
     {
         temp=(struct node *)malloc(sizeof(struct node));
  
@@ -69,21 +68,16 @@ void displaylist()
         temp=temp->next;
     }
 }
- void reverseList()
- {
-     struct node *current,*prev,*next;
-     current=head;
-     prev=NULL;
+int findmid()
+{
+    struct node *p,*q;
+    p=head;
+    q=head;
  
-     while(current != NULL)
-     {
-         next=current->next;
-         current->next=prev;
- 
-         prev=current;
-         current=next;
- 
- 
-     }
-     head=prev;
- }
+    while(q && q->next)
+    {
+        p=p->next;
+        q=q->next->next;
+    }
+    return p->data;
+}
