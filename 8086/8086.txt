@@ -1,0 +1,33 @@
+.MODEL SMALL
+.data
+A DB ?
+B DB ?
+
+.code
+Main PROC
+    MOV AH,1 ; Active Keyboard (Get value from KeyB)
+    int 21h  ; SystemInterrupt
+
+    MOV A, AL ; Get Input From AL And save it in A
+    int 21h
+
+    MOV B, AL ; Get Input From AL And save it in B
+
+    MOV BH, A ; Move the data of A to BH resistor
+
+    ADD BH, B ; Adding A + B (BH will Hold the ans)
+
+    SUB BH, 48 ; Get proper int value subtracting 48
+
+    MOV AH, 2  ; Display 
+    MOV DL, 0Ah; New line/next line
+    int 21h
+
+    MOV DL, BH ;Move the result to DL to display
+    int 21h
+
+    MOV AH, 4CH
+    int 21h
+
+    Main endp
+End Main
