@@ -1,0 +1,13 @@
+void main (){
+	int a[], b, c, sum;
+	b = 50; c = 20;
+	sum = ((b * b) / c);
+	if b>c then
+	print(b)
+	else {
+	int d;
+	d = 19;
+	a = -25;
+	printf(-b+a*d); /* this is a comment*/
+	}
+}
